@@ -128,3 +128,44 @@ table {
 }
 
 /* Meyers End */
+
+body {
+    display: flex;
+    flex-direction: column;
+    color: #112a46;
+}
+header {
+    background: #9ab7d4;
+    height: 10vh;
+    font-size: 2.5em;
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+main {
+    height: max-content;
+    background: #acc8e5;
+    color: #112a46;
+    flex-grow: 1;
+    width: 100%;
+    height: 90vh;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'videophreak';
+    src: url('./videophreak/VIDEOPHREAK.ttf');
+}
+
+header > p {
+    font-family: 'videophreak';
+}
+
+header > img {
+    --sizing: 1.7em;
+    height: var(--sizing);
+    width: var(--sizing);
+}
