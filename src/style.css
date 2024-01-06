@@ -153,6 +153,8 @@ main {
     width: 100%;
     height: 90vh;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
 }
 
 @font-face {
@@ -168,4 +170,18 @@ header > img {
     --sizing: 1.7em;
     height: var(--sizing);
     width: var(--sizing);
+}
+
+main > div {
+    background: white;
+    height: 65vw;
+    width: 65vw;
+    position: relative;
+    top: 100px;
+}
+
+.gameboard {
+    height: 80%;
+    width: 80%;
+    background: green;
 }
