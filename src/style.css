@@ -133,6 +133,8 @@ body {
     display: flex;
     flex-direction: column;
     color: #112a46;
+    overflow: scroll;
+    background: #acc8e5;
 }
 header {
     background: #9ab7d4;
@@ -147,7 +149,6 @@ header {
 
 main {
     height: max-content;
-    background: #acc8e5;
     color: #112a46;
     flex-grow: 1;
     width: 100%;
@@ -172,16 +173,30 @@ header > img {
     width: var(--sizing);
 }
 
-main > div {
+.cont {
     background: white;
-    height: 65vw;
-    width: 65vw;
+    height: 75vw;
     position: relative;
     top: 100px;
+    padding-bottom: 100px;
 }
 
 .gameboard {
-    height: 80%;
-    width: 80%;
-    background: green;
+    height: 80vw;
+    width: 80vw;
+    max-height: 400px;
+    max-width: 400px;
+    background: #9ab7d4;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.gameboard > div {
+    flex-grow: 1;
+    display: flex;
+}
+.gameboard > div > div {
+    border: 1px solid black;
+    flex-grow: 1;
 }
