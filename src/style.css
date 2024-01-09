@@ -156,6 +156,7 @@ main {
     box-sizing: border-box;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 @font-face {
@@ -174,16 +175,25 @@ header > img {
 }
 
 .cont {
-    background: white;
-    height: 75vw;
     position: relative;
-    top: 100px;
-    padding-bottom: 100px;
+    height: 40vw;
+    width: 100vw;
+    bottom: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    column-gap: 40px;
 }
 
-.gameboard {
-    height: 80vw;
-    width: 80vw;
+.gameboard1,
+.gameboard2,
+.secbox {
+    min-width: 250px;
+    min-height: 250px;
+    height: 40vw;
+    width: 40vw;
     max-height: 400px;
     max-width: 400px;
     background: #9ab7d4;
@@ -192,11 +202,53 @@ header > img {
     border: 1px solid black;
 }
 
-.gameboard > div {
+.gameboard2,
+.secbox {
+    border: 2px solid black;
+}
+.gameboard1 > div,
+.gameboard2 > div {
     flex-grow: 1;
     display: flex;
 }
-.gameboard > div > div {
+
+.gameboard1 > div > div,
+.gameboard2 > div > div {
     border: 1px solid black;
     flex-grow: 1;
+}
+
+.secbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 4vw;
+    align-items: center;
+}
+
+.secbox > button {
+    font-size: 0.8em;
+    width: 60%;
+    background: #acc8e5;
+    border: 2px solid black;
+    border-radius: 100px;
+}
+
+.secbox > div {
+    display: grid;
+    grid-template: 1fr 1fr / 1fr;
+    gap: 8px;
+}
+
+.secbox > div > p:first-of-type {
+    font-size: 1.1em;
+}
+
+.secbox > div > p {
+    text-align: center;
+}
+
+.secbox > button:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s;
 }
