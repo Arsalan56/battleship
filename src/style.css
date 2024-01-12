@@ -1,4 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -40,7 +40,6 @@ strong,
 sub,
 sup,
 tt,
-var,
 b,
 u,
 i,
@@ -80,9 +79,7 @@ ruby,
 section,
 summary,
 time,
-mark,
-audio,
-video {
+mark {
     margin: 0;
     padding: 0;
     border: 0;
@@ -90,6 +87,7 @@ video {
     font: inherit;
     vertical-align: baseline;
 }
+*/
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -202,7 +200,6 @@ header > img {
     border: 1px solid black;
 }
 
-.gameboard2,
 .secbox {
     border: 2px solid black;
 }
@@ -251,4 +248,10 @@ header > img {
 .secbox > button:hover {
     transform: scale(1.1);
     transition: transform 0.2s;
+}
+
+.gameboard1,
+.gameboard2,
+button {
+    cursor: pointer;
 }
