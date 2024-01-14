@@ -1,7 +1,13 @@
 export default function ship(len) {
     const length = len;
     let hits = 0;
-    const sunk = false;
-    const hit = () => ++hits;
-    return { length, hits, sunk, hit };
+    const hit = () => {
+        hits++;
+    };
+
+    const getHits = () => hits;
+    const isSunk = () => hits >= length;
+    const getLength = () => length;
+
+    return { getLength, getHits, isSunk, hit };
 }

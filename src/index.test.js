@@ -1,7 +1,18 @@
-// /* eslint-disable no-undef */
+/* eslint-disable no-undef */
 import ship from './ship';
 
-test('Ship hit increment', () => {
-    const create = ship(1);
-    expect(create.hit()).toBe(1);
+const tinyShip = ship(1);
+
+describe('ship function', () => {
+    test('Ship does not start sunk', () => {
+        expect(tinyShip.isSunk()).toBe(false);
+    });
+    test('Increment the amount of times ship is hit', () => {
+        tinyShip.hit();
+        console.log(tinyShip.hits);
+        expect(tinyShip.getHits()).toEqual(1);
+    });
+    test('ship is sunk after hit enough times', () => {
+        expect(tinyShip.isSunk()).toBe(true);
+    });
 });
