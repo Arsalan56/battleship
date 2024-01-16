@@ -27,8 +27,16 @@ describe('Gameboard function', () => {
     });
     test('Board can place ships at locations correctly', () => {
         newBoard.place(3, 4, 4);
-        expect(newBoard.getBoard()[3][3]).toBe(true);
-        expect(newBoard.getBoard()[3][4]).toBe(true);
-        expect(newBoard.getBoard()[3][5]).toBe(true);
+        expect(newBoard.getBoard()[2][1]).toBe(false);
+
+        expect(newBoard.getBoard()[2][2]).toBe(true);
+        expect(newBoard.getBoard()[2][3]).toBe(true);
+        expect(newBoard.getBoard()[2][4]).toBe(true);
+        expect(newBoard.getBoard()[2][5]).toBe(true);
+    });
+    test('Gameboard can receive attack without problems', () => {
+        newBoard.place(3, 4, 4);
+        expect(newBoard.receiveAttack(3, 3)).toBe(true);
+        expect(newBoard.receiveAttack(3, 2)).toBe(false);
     });
 });

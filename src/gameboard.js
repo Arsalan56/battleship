@@ -4,6 +4,7 @@ export default function Gameboard(h, w) {
 
     const getBoard = () => board;
 
+    // Store the game board in an array
     for (let i = 0; i < h; i++) {
         board.push([]);
     }
@@ -13,15 +14,19 @@ export default function Gameboard(h, w) {
         }
     });
 
-    const place = (x, y, len) => {
+    // Place a ship at (x, y) with a length of len
+    const place = (y, x, len) => {
         let negative = 2;
         for (let i = 0; i < len; i++) {
-            if (y + i > board[x].length) {
-                board[x - 1][y - negative++] = true;
+            if (x + i > board[y].length) {
+                board[y - 1][x - negative++] = true;
             } else {
-                board[x - 1][y + i - 1] = true;
+                board[y - 1][x + i - 1] = true;
             }
         }
     };
-    return { getBoard, place };
+
+    // Check for whether the attack on (x, y) hit the ship
+    const receiveAttack = (y, x) => board[y - 1][x - 1];
+    return { getBoard, place, receiveAttack };
 }
