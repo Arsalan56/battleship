@@ -47,4 +47,13 @@ describe('Gameboard function', () => {
         expect(bigShip.getHits()).toBe(1);
         expect(bigShip.isSunk()).toBe(false);
     });
+    test('All ships are not sunk', () => {
+        expect(newBoard.allSunk()).toBe(false);
+    });
+    test('All ships are sunk', () => {
+        newBoard.receiveAttack(3, 3);
+        newBoard.receiveAttack(3, 5);
+        newBoard.receiveAttack(3, 6);
+        expect(newBoard.allSunk()).toBe(true);
+    });
 });

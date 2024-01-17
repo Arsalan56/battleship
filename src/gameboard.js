@@ -3,6 +3,7 @@ export default function Gameboard(h, w) {
     const board = [];
     const ships = [];
     const getBoard = () => board;
+    const missedAttacks = [];
 
     // Store the game board in an array
     for (let i = 0; i < h; i++) {
@@ -28,14 +29,17 @@ export default function Gameboard(h, w) {
         }
     };
 
-    // Check for whether the attack on (x, y) hit the ship
+    // Receive an attack and increment or store the location accordingly
     const receiveAttack = (y, x) => {
         const grid = board[y - 1][x - 1];
         if (typeof grid === 'number' && grid >= 0) {
             ships[grid].hit();
-            return true;
+        } else {
+            missedAttacks.push([y - 1, x - 1]);
         }
-        return false;
     };
-    return { getBoard, place, receiveAttack };
+
+    const getMissed = () => missedAttacks;
+    const allSunk = () => ships.every((i) => i.isSunk());
+    return { getBoard, place, receiveAttack, getMissed, allSunk };
 }
