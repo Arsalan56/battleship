@@ -3,6 +3,7 @@ import Ship from './ship';
 import Gameboard from './gameboard';
 
 const tinyShip = Ship(1);
+const bigShip = Ship(4);
 const newBoard = Gameboard(5, 6);
 
 describe('Ship function', () => {
@@ -26,17 +27,24 @@ describe('Gameboard function', () => {
         expect(newBoard.getBoard()[4].length).toBe(6);
     });
     test('Board can place ships at locations correctly', () => {
-        newBoard.place(3, 4, 4);
+        newBoard.place(3, 4, bigShip);
+
         expect(newBoard.getBoard()[2][1]).toBe(false);
 
-        expect(newBoard.getBoard()[2][2]).toBe(true);
-        expect(newBoard.getBoard()[2][3]).toBe(true);
-        expect(newBoard.getBoard()[2][4]).toBe(true);
-        expect(newBoard.getBoard()[2][5]).toBe(true);
+        expect(newBoard.getBoard()[2][2]).toBe(0);
+        expect(newBoard.getBoard()[2][3]).toBe(0);
+        expect(newBoard.getBoard()[2][4]).toBe(0);
+        expect(newBoard.getBoard()[2][5]).toBe(0);
     });
-    test('Gameboard can receive attack without problems', () => {
-        newBoard.place(3, 4, 4);
-        expect(newBoard.receiveAttack(3, 3)).toBe(true);
-        expect(newBoard.receiveAttack(3, 2)).toBe(false);
+    test('Board can place ships at multiple locations', () => {
+        newBoard.place(1, 2, tinyShip);
+        expect(newBoard.getBoard()[0][0]).toBe(false);
+        expect(newBoard.getBoard()[0][2]).toBe(false);
+        expect(newBoard.getBoard()[0][1]).toBe(1);
+    });
+    test('Ships can receive attack without problems', () => {
+        newBoard.receiveAttack(3, 4);
+        expect(bigShip.getHits()).toBe(1);
+        expect(bigShip.isSunk()).toBe(false);
     });
 });
