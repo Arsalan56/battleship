@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import Ship from './ship';
 import Gameboard from './gameboard';
+import Player from './player';
 
 const tinyShip = Ship(1);
 const bigShip = Ship(4);
@@ -55,5 +56,21 @@ describe('Gameboard function', () => {
         newBoard.receiveAttack(3, 5);
         newBoard.receiveAttack(3, 6);
         expect(newBoard.allSunk()).toBe(true);
+    });
+});
+
+describe('Player function', () => {
+    const p1 = Player(true);
+    const p2 = Player(false);
+
+    test('Players variables don not overlap', () => {
+        expect(p1.checkTurn()).toBe(true);
+        expect(p2.checkTurn()).toBe(false);
+    });
+
+    test('Turns can be taken and variable changes', () => {
+        p1.takeTurn();
+        expect(p1.checkTurn()).toBe(false);
+        expect(p2.checkTurn()).toBe(false);
     });
 });
