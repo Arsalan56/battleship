@@ -1,7 +1,10 @@
 /* eslint-disable no-param-reassign */
+// import Ship from './ship';
+
 export default function Gameboard(h, w) {
     const board = [];
     const ships = [];
+    let horizontalAxis = true;
     const getBoard = () => board;
     const allAttacks = [];
 
@@ -20,15 +23,28 @@ export default function Gameboard(h, w) {
         let negative = 2;
         ships.push(ship);
         const currShip = ships[ships.indexOf(ship)];
-        for (let i = 0; i < currShip.getLength(); i++) {
-            if (x + i > board[y].length) {
-                board[y - 1][x - negative++] = ships.indexOf(ship);
-            } else {
-                board[y - 1][x + i - 1] = ships.indexOf(ship);
+        if (horizontalAxis) {
+            for (let i = 0; i < currShip.getLength(); i++) {
+                if (x + i > board[y].length) {
+                    board[y - 1][x - negative++] = ships.indexOf(ship);
+                } else {
+                    board[y - 1][x + i - 1] = ships.indexOf(ship);
+                }
+            }
+        } else {
+            for (let i = 0; i < currShip.getLength(); i++) {
+                if (y + i > board.length) {
+                    board[y - negative++][x - 1] = ships.indexOf(ship);
+                } else {
+                    board[y + i - 1][x - 1] = ships.indexOf(ship);
+                }
             }
         }
     };
 
+    const changeAxis = () => {
+        horizontalAxis = false;
+    };
     // Receive an attack and increment or store the location accordingly
     const receiveAttack = (y, x) => {
         const grid = board[y - 1][x - 1];
@@ -41,5 +57,12 @@ export default function Gameboard(h, w) {
     const attackHistory = () => allAttacks;
     // Check if all ships are sunk
     const allSunk = () => ships.every((i) => i.isSunk());
-    return { getBoard, place, receiveAttack, attackHistory, allSunk };
+    return {
+        getBoard,
+        place,
+        receiveAttack,
+        attackHistory,
+        allSunk,
+        changeAxis,
+    };
 }

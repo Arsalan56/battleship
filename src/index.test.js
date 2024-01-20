@@ -57,6 +57,16 @@ describe('Gameboard function', () => {
         newBoard.receiveAttack(3, 6);
         expect(newBoard.allSunk()).toBe(true);
     });
+    test('Axis can be changed', () => {
+        const otherBoard = Gameboard(5, 3);
+        otherBoard.changeAxis();
+        otherBoard.place(2, 3, bigShip);
+        expect(otherBoard.getBoard()[1][2]).toBe(0);
+        expect(otherBoard.getBoard()[2][2]).toBe(0);
+        expect(otherBoard.getBoard()[3][2]).toBe(0);
+        expect(otherBoard.getBoard()[4][2]).toBe(0);
+        expect(otherBoard.getBoard()[0][2]).toBe(false);
+    });
 });
 
 describe('Player function', () => {

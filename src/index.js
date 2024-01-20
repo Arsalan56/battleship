@@ -15,13 +15,5 @@ import './style.css';
         }
     };
     fillBox(document.querySelector('.gameboard1'));
-    // fillBox(board2);
-
-    // const startBtn = document.querySelector('.secbox button');
-    // startBtn.addEventListener('click', () => {
-    //     document.querySelector('.secbox').style.visibility = 'hidden';
-    //     document.querySelector('.secbox').style.position = 'absolute';
-    //     board2.style.visibility = 'visible';
-    //     board2.style.position = 'initial';
-    // });
+    fillBox(board2);
 })();

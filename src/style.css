@@ -223,12 +223,14 @@ header > img {
     align-items: center;
 }
 
-.secbox > button {
+.cont > div > button {
     font-size: 0.8em;
     width: 60%;
     background: #acc8e5;
     border: 2px solid black;
     border-radius: 100px;
+    height: 40px;
+    font-size: 1em;
 }
 
 .secbox > div {
@@ -245,8 +247,8 @@ header > img {
     text-align: center;
 }
 
-.secbox > button:hover {
-    transform: scale(1.1);
+.cont > div > button:hover {
+    transform: scale(1.05);
     transition: transform 0.2s;
 }
 
@@ -265,15 +267,22 @@ button {
 .cont > div:first-of-type {
     margin-top: 100px;
 }
-.gameboard2 {
+.gm2 {
     visibility: hidden;
     position: absolute;
 }
 
 .cont > div:last-of-type {
     position: absolute;
-    background: green;
     height: 100px;
     width: clamp(200px, 40vw, 500px);
     bottom: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: #9ab7d4;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 10px;
 }
