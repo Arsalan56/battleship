@@ -1,6 +1,8 @@
 /* eslint-disable no-param-reassign */
 // import Ship from './ship';
 
+import ToInt16 from 'es-abstract/2015/ToInt16';
+
 export default function Gameboard(h, w) {
     const board = [];
     const ships = [];
@@ -25,7 +27,7 @@ export default function Gameboard(h, w) {
         const currShip = ships[ships.indexOf(ship)];
         if (horizontalAxis) {
             for (let i = 0; i < currShip.getLength(); i++) {
-                if (x + i > board[y].length) {
+                if (x + i > board[y - 1].length) {
                     board[y - 1][x - negative++] = ships.indexOf(ship);
                 } else {
                     board[y - 1][x + i - 1] = ships.indexOf(ship);
@@ -42,9 +44,37 @@ export default function Gameboard(h, w) {
         }
     };
 
-    const changeAxis = () => {
-        horizontalAxis = false;
+    const previewPlace = (y, x, len) => {
+        let add = 1;
+
+        if (horizontalAxis) {
+            for (let i = 0; i < len; i++) {
+                // console.log(x);
+                if (parseInt(x, 10) - 1 - i < 0) {
+                    document.querySelectorAll(`.gameboard1 > div > div`)[
+                        parseInt(y, 10) * 10 + parseInt(x, 10) - 11 + add++
+                    ].style.background = 'green';
+                } else {
+                    document.querySelectorAll(`.gameboard1 > div > div`)[
+                        parseInt(y, 10) * 10 + parseInt(x, 10) - 11 - i
+                    ].style.background = 'green';
+                }
+            }
+        } else {
+            // for (let i = 0; i < len; i++) {
+            //     if (y + i > board.length) {
+            //         board[y - negative++][x - 1] = ships.indexOf(ship);
+            //     } else {
+            //         board[y + i - 1][x - 1] = ships.indexOf(ship);
+            //     }
+            // }
+        }
     };
+    // Change the axis in which ships are placed. Either horizontal (true) or vertical(false)
+    const changeAxis = () => {
+        horizontalAxis = !horizontalAxis;
+    };
+
     // Receive an attack and increment or store the location accordingly
     const receiveAttack = (y, x) => {
         const grid = board[y - 1][x - 1];
@@ -64,5 +94,6 @@ export default function Gameboard(h, w) {
         attackHistory,
         allSunk,
         changeAxis,
+        previewPlace,
     };
 }

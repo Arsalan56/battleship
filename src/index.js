@@ -1,7 +1,12 @@
 import './style.css';
+import Gameboard from './gameboard';
+import Ship from './ship';
 
 (() => {
+    const mainBoard = Gameboard(10, 10);
     const board2 = document.querySelector('.gameboard2');
+
+    // function to fill in the grid
     const fillBox = (parent) => {
         for (let i = 0; i < 10; i++) {
             const box = document.createElement('div');
@@ -16,4 +21,19 @@ import './style.css';
     };
     fillBox(document.querySelector('.gameboard1'));
     fillBox(board2);
+
+    // Change axis button event listener
+    document.querySelector('div button').addEventListener('click', () => {
+        mainBoard.changeAxis();
+    });
+
+    document.querySelectorAll('.gameboard1 div div').forEach((i) => {
+        i.addEventListener('mouseover', () => {
+            mainBoard.previewPlace(
+                i.parentElement.getAttribute('data'),
+                i.getAttribute('data'),
+                4
+            );
+        });
+    });
 })();
