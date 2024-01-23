@@ -47,27 +47,49 @@ export default function Gameboard(h, w) {
     const previewPlace = (y, x, len) => {
         let add = 1;
 
+        const allPrevs = document.querySelectorAll('.preview');
+
+        if (allPrevs.length > 0) {
+            allPrevs.forEach((i) => {
+                i.classList.remove('preview');
+            });
+        }
         if (horizontalAxis) {
             for (let i = 0; i < len; i++) {
                 // console.log(x);
                 if (parseInt(x, 10) - 1 - i < 0) {
-                    document.querySelectorAll(`.gameboard1 > div > div`)[
-                        parseInt(y, 10) * 10 + parseInt(x, 10) - 11 + add++
-                    ].style.background = 'green';
+                    document
+                        .querySelectorAll(`.gameboard1 > div > div`)
+                        [
+                            parseInt(y, 10) * 10 + parseInt(x, 10) - 11 + add++
+                        ].classList.add('preview');
                 } else {
-                    document.querySelectorAll(`.gameboard1 > div > div`)[
-                        parseInt(y, 10) * 10 + parseInt(x, 10) - 11 - i
-                    ].style.background = 'green';
+                    document
+                        .querySelectorAll(`.gameboard1 > div > div`)
+                        [
+                            parseInt(y, 10) * 10 + parseInt(x, 10) - 11 - i
+                        ].classList.add('preview');
                 }
             }
         } else {
-            // for (let i = 0; i < len; i++) {
-            //     if (y + i > board.length) {
-            //         board[y - negative++][x - 1] = ships.indexOf(ship);
-            //     } else {
-            //         board[y + i - 1][x - 1] = ships.indexOf(ship);
-            //     }
-            // }
+            for (let i = 0; i < len; i++) {
+                if (y - 1 + i > 9) {
+                    document
+                        .querySelectorAll(`.gameboard1 > div > div`)
+                        [
+                            parseInt(y, 10) * 10 +
+                                parseInt(x, 10) -
+                                11 -
+                                add++ * 10
+                        ].classList.add('preview');
+                } else {
+                    document
+                        .querySelectorAll(`.gameboard1 > div > div`)
+                        [
+                            parseInt(y, 10) * 10 + parseInt(x, 10) - 11 + i * 10
+                        ].classList.add('preview');
+                }
+            }
         }
     };
     // Change the axis in which ships are placed. Either horizontal (true) or vertical(false)
