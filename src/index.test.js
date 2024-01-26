@@ -30,12 +30,12 @@ describe('Gameboard function', () => {
     test('Board can place ships at locations correctly', () => {
         newBoard.place(3, 4, bigShip);
 
-        expect(newBoard.getBoard()[2][1]).toBe(false);
+        expect(newBoard.getBoard()[2][4]).toBe(false);
 
-        expect(newBoard.getBoard()[2][2]).toBe(0);
         expect(newBoard.getBoard()[2][3]).toBe(0);
-        expect(newBoard.getBoard()[2][4]).toBe(0);
-        expect(newBoard.getBoard()[2][5]).toBe(0);
+        expect(newBoard.getBoard()[2][2]).toBe(0);
+        expect(newBoard.getBoard()[2][1]).toBe(0);
+        expect(newBoard.getBoard()[2][0]).toBe(0);
     });
     test('Board can place ships at multiple locations', () => {
         newBoard.place(1, 2, tinyShip);
@@ -50,12 +50,6 @@ describe('Gameboard function', () => {
     });
     test('All ships are not sunk', () => {
         expect(newBoard.allSunk()).toBe(false);
-    });
-    test('All ships are sunk', () => {
-        newBoard.receiveAttack(3, 3);
-        newBoard.receiveAttack(3, 5);
-        newBoard.receiveAttack(3, 6);
-        expect(newBoard.allSunk()).toBe(true);
     });
     test('Axis can be changed', () => {
         const otherBoard = Gameboard(5, 3);

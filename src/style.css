@@ -287,6 +287,7 @@ button {
     border-radius: 10px;
 }
 
-.preview {
+.preview,
+.placed {
     background: #077187;
 }
