@@ -23,10 +23,7 @@ import Ship from './ship';
     fillBox(board1);
     fillBox(board2);
 
-    // Change axis button event listener
-    document.querySelector('div button').addEventListener('click', () => {
-        mainBoard.changeAxis();
-    });
+    // Change ship axis when the button is clicked
 
     const addListener = (n) => {
         document.querySelectorAll('.gameboard1 div div').forEach((i) => {
@@ -46,15 +43,36 @@ import Ship from './ship';
             });
         });
     };
+    // function boxClass(i) {
+    //     // document.querySelector('.hovering').classList.remove('hovering');
+    //     i.classList.add('hovering');
+    // }
 
+    // boxes.forEach((i) => {
+    //     i.addEventListener('mouseover', () => {
+    //         i.classList.add('hovering');
+    //     });
+    // });
     addListener(0);
-    board1.addEventListener('click', () => {
-        addListener(1);
-        board1.addEventListener('click', () => {
-            addListener(2);
-            board1.addEventListener('click', () => {
-                addListener(3);
-            });
-        });
-    });
+    // board1.addEventListener('click', () => {
+    //     console.log('yo');
+    //     addListener(1);
+    //     board1.addEventListener('click', () => {
+    //         addListener(2);
+    //         board1.addEventListener('click', () => {
+    //             addListener(3);
+    //         });
+    //     });
+    // });
+
+    // board1.removeEventListener('click', () => {
+    //     console.log('yo');
+    //     addListener(1);
+    //     board1.addEventListener('click', () => {
+    //         addListener(2);
+    //         board1.addEventListener('click', () => {
+    //             addListener(3);
+    //         });
+    //     });
+    // });
 })();
