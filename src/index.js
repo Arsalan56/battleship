@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import './style.css';
 import Gameboard from './gameboard';
 import Ship from './ship';
@@ -24,55 +25,88 @@ import Ship from './ship';
     fillBox(board2);
 
     // Change ship axis when the button is clicked
+    document
+        .querySelector('.cont > div > button')
+        .addEventListener('click', () => {
+            mainBoard.changeAxis();
+            document.querySelectorAll('.preview').forEach((i) => {
+                i.classList.remove('preview');
+            });
+        });
 
     const addListener = (n) => {
         document.querySelectorAll('.gameboard1 div div').forEach((i) => {
             i.addEventListener('mouseover', () => {
                 mainBoard.previewPlace(
-                    i.parentElement.getAttribute('data'),
+                    i.parentNode.getAttribute('data'),
                     i.getAttribute('data'),
                     5 - n
                 );
             });
-            i.addEventListener('click', () => {
-                mainBoard.place(
-                    i.parentNode.getAttribute('data'),
-                    i.getAttribute('data'),
-                    Ship(5 - n)
-                );
-            });
+            i.addEventListener(
+                'click',
+                () => {
+                    mainBoard.place(
+                        i.parentNode.getAttribute('data'),
+                        i.getAttribute('data'),
+                        Ship(5 - n)
+                    );
+                    document.querySelectorAll('.preview').forEach((j) => {
+                        j.classList.add('placed');
+                    });
+                },
+                { once: true }
+            );
         });
     };
-    // function boxClass(i) {
-    //     // document.querySelector('.hovering').classList.remove('hovering');
-    //     i.classList.add('hovering');
-    // }
 
-    // boxes.forEach((i) => {
-    //     i.addEventListener('mouseover', () => {
-    //         i.classList.add('hovering');
-    //     });
-    // });
+    const removeListener = (node) => {
+        const clone = node.cloneNode(true);
+        const parent = node.parentNode;
+        parent.removeChild(node);
+        parent.appendChild(clone);
+    };
+
     addListener(0);
-    // board1.addEventListener('click', () => {
-    //     console.log('yo');
-    //     addListener(1);
-    //     board1.addEventListener('click', () => {
-    //         addListener(2);
-    //         board1.addEventListener('click', () => {
-    //             addListener(3);
-    //         });
-    //     });
-    // });
+    document.querySelector('.gameboard1').addEventListener('click', () => {
+        removeListener(document.querySelector('.gameboard1'));
+        addListener(1);
+        document.querySelector('.gameboard1').addEventListener('click', () => {
+            removeListener(document.querySelector('.gameboard1'));
+            addListener(1);
+            document
+                .querySelector('.gameboard1')
+                .addEventListener('click', () => {
+                    removeListener(document.querySelector('.gameboard1'));
+                    addListener(2);
+                    document
+                        .querySelector('.gameboard1')
+                        .addEventListener('click', () => {
+                            removeListener(
+                                document.querySelector('.gameboard1')
+                            );
+                            addListener(2);
 
-    // board1.removeEventListener('click', () => {
-    //     console.log('yo');
-    //     addListener(1);
-    //     board1.addEventListener('click', () => {
-    //         addListener(2);
-    //         board1.addEventListener('click', () => {
-    //             addListener(3);
-    //         });
-    //     });
-    // });
+                            document
+                                .querySelector('.gameboard1')
+                                .addEventListener('click', () => {
+                                    removeListener(
+                                        document.querySelector('.gameboard1')
+                                    );
+                                    addListener(3);
+                                    document
+                                        .querySelector('.gameboard1')
+                                        .addEventListener('click', () => {
+                                            console.log('done');
+                                            removeListener(
+                                                document.querySelector(
+                                                    '.gameboard1'
+                                                )
+                                            );
+                                        });
+                                });
+                        });
+                });
+        });
+    });
 })();
