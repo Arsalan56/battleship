@@ -97,7 +97,7 @@ import Ship from './ship';
                                     document
                                         .querySelector('.gameboard1')
                                         .addEventListener('click', () => {
-                                            console.log('done');
+                                            console.log(mainBoard.getBoard());
                                             removeListener(
                                                 document.querySelector(
                                                     '.gameboard1'

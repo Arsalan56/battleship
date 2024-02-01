@@ -34,10 +34,10 @@ export default function Gameboard(h, w) {
             }
         } else {
             for (let i = 0; i < currShip.getLength(); i++) {
-                if (y + i > board.length) {
+                if (parseInt(y, 10) + i > board.length) {
                     board[y - add++][x - 1] = ships.indexOf(ship);
                 } else {
-                    board[y + i - 1][x - 1] = ships.indexOf(ship);
+                    board[y - 1 + i][x - 1] = ships.indexOf(ship);
                 }
             }
         }
