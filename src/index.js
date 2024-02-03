@@ -67,46 +67,30 @@ import Ship from './ship';
         parent.appendChild(clone);
     };
 
+    // Check to see if the previewing ship is in a placed ship's location
+    const checkValid = () => {
+        // eslint-disable-next-line consistent-return
+        document.querySelectorAll('.preview').forEach((i) => {
+            if (i.classList.contains('placed')) {
+                return false;
+            }
+        });
+        return true;
+    };
     addListener(0);
-    document.querySelector('.gameboard1').addEventListener('click', () => {
-        removeListener(document.querySelector('.gameboard1'));
-        addListener(1);
+
+    // Create only one event listener and make it call a function that will constantly decrement parameter
+    // and call add & removelistener
+    function query(n) {
         document.querySelector('.gameboard1').addEventListener('click', () => {
             removeListener(document.querySelector('.gameboard1'));
-            addListener(1);
-            document
-                .querySelector('.gameboard1')
-                .addEventListener('click', () => {
-                    removeListener(document.querySelector('.gameboard1'));
-                    addListener(2);
-                    document
-                        .querySelector('.gameboard1')
-                        .addEventListener('click', () => {
-                            removeListener(
-                                document.querySelector('.gameboard1')
-                            );
-                            addListener(2);
-
-                            document
-                                .querySelector('.gameboard1')
-                                .addEventListener('click', () => {
-                                    removeListener(
-                                        document.querySelector('.gameboard1')
-                                    );
-                                    addListener(3);
-                                    document
-                                        .querySelector('.gameboard1')
-                                        .addEventListener('click', () => {
-                                            console.log(mainBoard.getBoard());
-                                            removeListener(
-                                                document.querySelector(
-                                                    '.gameboard1'
-                                                )
-                                            );
-                                        });
-                                });
-                        });
-                });
+            if (n < 4) {
+                addListener(n);
+                query(n + 1);
+            } else {
+                console.log('done');
+            }
         });
-    });
+    }
+    query(1);
 })();
