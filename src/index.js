@@ -71,6 +71,7 @@ import Ship from './ship';
     const checkValid = () => {
         // eslint-disable-next-line consistent-return
         document.querySelectorAll('.preview').forEach((i) => {
+            console.log(i.classList.contains('placed'));
             if (i.classList.contains('placed')) {
                 return false;
             }
@@ -79,18 +80,22 @@ import Ship from './ship';
     };
     addListener(0);
 
-    // Create only one event listener and make it call a function that will constantly decrement parameter
-    // and call add & removelistener
-    function query(n) {
+    function addEvent(n) {
         document.querySelector('.gameboard1').addEventListener('click', () => {
             removeListener(document.querySelector('.gameboard1'));
             if (n < 4) {
-                addListener(n);
-                query(n + 1);
+                addListener(Math.floor(n));
+                // Allow the user to place 2 of the size 3 ships
+                if (n >= 2 && n < 3) {
+                    addEvent(n + 1 / 2);
+                } else {
+                    addEvent(n + 1);
+                }
             } else {
+                // All ships are placed
                 console.log('done');
             }
         });
     }
-    query(1);
+    addEvent(1);
 })();
