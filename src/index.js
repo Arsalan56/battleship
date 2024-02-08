@@ -2,6 +2,7 @@
 import './style.css';
 import Gameboard from './gameboard';
 import Ship from './ship';
+import Game from './gameloop';
 
 (() => {
     const mainBoard = Gameboard(10, 10);
@@ -79,7 +80,6 @@ import Ship from './ship';
     // Check to see if the previewing ship is in a placed ship's location
     addListener(0);
     function addEvent(n) {
-        console.log(n);
         document.querySelector('.gameboard1').addEventListener('click', () => {
             if (isPlaced) {
                 removeListener(document.querySelector('.gameboard1'));
@@ -96,6 +96,7 @@ import Ship from './ship';
                 } else {
                     // If all ships are placed, this occurs
                     console.log(mainBoard.getBoard());
+                    Game().start();
                 }
             } else if (n === 2) {
                 addListener(n - 1);
@@ -109,12 +110,5 @@ import Ship from './ship';
         });
     }
 
-    // addEvent(1);
-
-    document.querySelector('.gameboard1').addEventListener('click', () => {
-        removeListener(document.querySelector('.gameboard1'));
-        addListener(1);
-        // Allow the user to place 2 of the size 3 ships
-        addEvent(2);
-    });
+    addEvent(1);
 })();
