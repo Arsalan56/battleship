@@ -7,6 +7,7 @@ import Ship from './ship';
     const mainBoard = Gameboard(10, 10);
     const board1 = document.querySelector('.gameboard1');
     const board2 = document.querySelector('.gameboard2');
+    let isPlaced = false;
 
     // function to fill in the grid
     const fillBox = (parent) => {
@@ -33,8 +34,8 @@ import Ship from './ship';
                 i.classList.remove('preview');
             });
         });
-
     const addListener = (n) => {
+        const values = [];
         document.querySelectorAll('.gameboard1 div div').forEach((i) => {
             i.addEventListener('mouseover', () => {
                 mainBoard.previewPlace(
@@ -43,9 +44,16 @@ import Ship from './ship';
                     5 - n
                 );
             });
-            i.addEventListener(
-                'click',
-                () => {
+            i.addEventListener('click', () => {
+                document.querySelectorAll('.preview').forEach((j) => {
+                    if (j.classList.contains('placed')) {
+                        values.push(true);
+                    } else {
+                        values.push(false);
+                    }
+                });
+                if (!values.includes(true)) {
+                    isPlaced = true;
                     mainBoard.place(
                         i.parentNode.getAttribute('data'),
                         i.getAttribute('data'),
@@ -54,9 +62,10 @@ import Ship from './ship';
                     document.querySelectorAll('.preview').forEach((j) => {
                         j.classList.add('placed');
                     });
-                },
-                { once: true }
-            );
+                } else {
+                    isPlaced = false;
+                }
+            });
         });
     };
 
@@ -68,34 +77,44 @@ import Ship from './ship';
     };
 
     // Check to see if the previewing ship is in a placed ship's location
-    const checkValid = () => {
-        // eslint-disable-next-line consistent-return
-        document.querySelectorAll('.preview').forEach((i) => {
-            console.log(i.classList.contains('placed'));
-            if (i.classList.contains('placed')) {
-                return false;
-            }
-        });
-        return true;
-    };
     addListener(0);
-
     function addEvent(n) {
+        console.log(n);
         document.querySelector('.gameboard1').addEventListener('click', () => {
-            removeListener(document.querySelector('.gameboard1'));
-            if (n < 4) {
-                addListener(Math.floor(n));
-                // Allow the user to place 2 of the size 3 ships
-                if (n >= 2 && n < 3) {
-                    addEvent(n + 1 / 2);
+            if (isPlaced) {
+                removeListener(document.querySelector('.gameboard1'));
+                if (n < 4) {
+                    addListener(Math.floor(n));
+                    // Allow the user to place 2 of the size 3 ships
+                    if (n >= 2 && n < 3 && isPlaced) {
+                        addEvent(n + 1 / 2);
+                    } else if (isPlaced) {
+                        addEvent(n + 1);
+                    } else {
+                        addEvent(n);
+                    }
                 } else {
-                    addEvent(n + 1);
+                    // If all ships are placed, this occurs
+                    console.log(mainBoard.getBoard());
                 }
+            } else if (n === 2) {
+                addListener(n - 1);
+            } else if (n === 3) {
+                addListener(Math.floor(n - 0.5));
+            } else if (n === 4) {
+                addListener(3);
             } else {
-                // All ships are placed
-                console.log('done');
+                addListener(n);
             }
         });
     }
-    addEvent(1);
+
+    // addEvent(1);
+
+    document.querySelector('.gameboard1').addEventListener('click', () => {
+        removeListener(document.querySelector('.gameboard1'));
+        addListener(1);
+        // Allow the user to place 2 of the size 3 ships
+        addEvent(2);
+    });
 })();
