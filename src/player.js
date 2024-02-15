@@ -8,7 +8,5 @@ export default function Player(turn) {
     const takeTurn = () => {
         hasTurn = !hasTurn;
     };
-
-    const placeShips = () => {};
     return { getBoard, checkTurn, takeTurn };
 }

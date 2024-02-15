@@ -264,9 +264,10 @@ button {
     margin-bottom: 8px;
 }
 
-.cont > div:first-of-type {
-    margin-top: 100px;
+.cont {
+    margin-top: 150px;
 }
+
 .gm2 {
     visibility: hidden;
     position: absolute;

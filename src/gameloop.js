@@ -1,14 +1,30 @@
 export default function Game() {
-    const start = () => {
-        // Make the second board visible
-        document.querySelector('.gm2').style.visibility = 'visible';
-        document.querySelector('.gm2').style.position = 'static';
+    let mainBoard;
 
-        document.querySelector('.cont > div:last-of-type').style.visibility =
-            'hidden';
-        document.querySelector('.cont > div:last-of-type').style.position =
-            'absolute';
+    const main = () => {
+        let gameOn = true;
+        while (gameOn) {
+            if (mainBoard.allSunk()) {
+                gameOn = false;
+            }
+        }
     };
 
+    const randomInt = (max) => Math.floor(Math.random() * max);
+
+    const start = (gb) => {
+        mainBoard = gb;
+        // Make the second board visible
+        const secBoard = document.querySelector('.gm2');
+        const shipPlace = document.querySelector('.cont > div:last-of-type');
+
+        secBoard.style.visibility = 'visible';
+        secBoard.style.position = 'static';
+
+        shipPlace.style.position = 'absolute';
+        shipPlace.style.visibility = 'hidden';
+        document.querySelector('.gameboard1').style.cursor = 'default';
+        // main();
+    };
     return { start };
 }
