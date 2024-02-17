@@ -21,6 +21,7 @@ export default function Gameboard(h, w) {
     // Place a ship at (x, y)
     const place = (y, x, ship) => {
         let add = 1;
+        let subt = 2;
         ships.push(ship);
         const currShip = ships[ships.indexOf(ship)];
         if (horizontalAxis) {
@@ -35,7 +36,7 @@ export default function Gameboard(h, w) {
         } else {
             for (let i = 0; i < currShip.getLength(); i++) {
                 if (parseInt(y, 10) + i > board.length) {
-                    board[y - add++][x - 1] = ships.indexOf(ship);
+                    board[y - subt++][x - 1] = ships.indexOf(ship);
                 } else {
                     board[y - 1 + i][x - 1] = ships.indexOf(ship);
                 }

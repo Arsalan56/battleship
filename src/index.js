@@ -95,6 +95,7 @@ import Game from './gameloop';
     //                 }
     //             } else {
     //                 // If all ships are placed, start the game loop
+    //                 console.log(mainBoard.getBoard());
     //                 Game().start(mainBoard);
     //             }
     //         } else if (n === 2) {

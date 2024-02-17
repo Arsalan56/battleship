@@ -52,6 +52,7 @@ export default function Game() {
             randomBoard(size - 1);
         }
     };
+
     const start = (gb) => {
         mainBoard = gb;
         // Make the second board visible
@@ -67,7 +68,7 @@ export default function Game() {
         document.querySelector('.gameboard1').style.cursor = 'default';
         randomBoard(5);
         console.log(oppBoard.getBoard());
-        showOppBoard();
+        // showOppBoard();
         // main();
     };
 
