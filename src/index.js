@@ -78,36 +78,38 @@ import Game from './gameloop';
     };
 
     // Check to see if the previewing ship is in a placed ship's location
-    addListener(0);
-    function addEvent(n) {
-        document.querySelector('.gameboard1').addEventListener('click', () => {
-            if (isPlaced) {
-                removeListener(document.querySelector('.gameboard1'));
-                if (n < 4) {
-                    addListener(Math.floor(n));
-                    // Allow the user to place 2 of the size 3 ships
-                    if (n >= 2 && n < 3 && isPlaced) {
-                        addEvent(n + 1 / 2);
-                    } else if (isPlaced) {
-                        addEvent(n + 1);
-                    } else {
-                        addEvent(n);
-                    }
-                } else {
-                    // If all ships are placed, start the game loop
-                    Game().start(mainBoard);
-                }
-            } else if (n === 2) {
-                addListener(n - 1);
-            } else if (n === 3) {
-                addListener(Math.floor(n - 0.5));
-            } else if (n === 4) {
-                addListener(3);
-            } else {
-                addListener(n);
-            }
-        });
-    }
+    // addListener(0);
+    // function addEvent(n) {
+    //     document.querySelector('.gameboard1').addEventListener('click', () => {
+    //         if (isPlaced) {
+    //             removeListener(document.querySelector('.gameboard1'));
+    //             if (n < 4) {
+    //                 addListener(Math.floor(n));
+    //                 // Allow the user to place 2 of the size 3 ships
+    //                 if (n >= 2 && n < 3 && isPlaced) {
+    //                     addEvent(n + 1 / 2);
+    //                 } else if (isPlaced) {
+    //                     addEvent(n + 1);
+    //                 } else {
+    //                     addEvent(n);
+    //                 }
+    //             } else {
+    //                 // If all ships are placed, start the game loop
+    //                 Game().start(mainBoard);
+    //             }
+    //         } else if (n === 2) {
+    //             addListener(n - 1);
+    //         } else if (n === 3) {
+    //             addListener(Math.floor(n - 0.5));
+    //         } else if (n === 4) {
+    //             addListener(3);
+    //         } else {
+    //             addListener(n);
+    //         }
+    //     });
+    // }
 
-    addEvent(1);
+    // addEvent(1);
+
+    Game().start(mainBoard);
 })();

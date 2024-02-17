@@ -4,6 +4,8 @@ import Ship from './ship';
 export default function Game() {
     let mainBoard;
     const oppBoard = Gameboard(10, 10);
+    const allBoxes = document.querySelectorAll('.gameboard2 > div > div');
+
     const main = () => {
         let gameOn = true;
         while (gameOn) {
@@ -15,6 +17,18 @@ export default function Game() {
 
     const randomInt = (max) => Math.floor(Math.random() * max);
 
+    const showOppBoard = () => {
+        const ob = oppBoard.getBoard();
+        for (let i = 0; i < 10; i++) {
+            for (let j = 0; j < 10; j++) {
+                if (ob[i][j] !== false) {
+                    // Add the two numbers together by string
+                    allBoxes[i * 10 + j].classList.add('placed');
+                }
+            }
+        }
+    };
+
     const randomBoard = (size) => {
         if (size < 2) {
             return;
@@ -23,7 +37,10 @@ export default function Game() {
             oppBoard.changeAxis();
         }
 
-        console.log(Math.floor(size));
+        // Implement new code here:
+        // If position is valid, then place. Otherwise, loop until
+        // a valid location is generated
+
         oppBoard.place(
             randomInt(10) + 1,
             randomInt(10) + 1,
@@ -46,10 +63,13 @@ export default function Game() {
 
         shipPlace.style.position = 'absolute';
         shipPlace.style.visibility = 'hidden';
+
         document.querySelector('.gameboard1').style.cursor = 'default';
         randomBoard(5);
         console.log(oppBoard.getBoard());
+        showOppBoard();
         // main();
     };
+
     return { start };
 }
