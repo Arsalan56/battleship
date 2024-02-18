@@ -61,6 +61,14 @@ describe('Gameboard function', () => {
         expect(otherBoard.getBoard()[4][2]).toBe(0);
         expect(otherBoard.getBoard()[0][2]).toBe(false);
     });
+
+    test('Direction can be returned properly', () => {
+        expect(newBoard.getAxis()).toBe(true);
+        newBoard.changeAxis();
+        expect(newBoard.getAxis()).toBe(false);
+        newBoard.changeAxis();
+        expect(newBoard.getAxis()).toBe(true);
+    });
 });
 
 describe('Player function', () => {

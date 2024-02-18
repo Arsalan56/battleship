@@ -78,7 +78,7 @@ import Game from './gameloop';
     };
 
     // Check to see if the previewing ship is in a placed ship's location
-    // addListener(0);
+    addListener(0);
     // function addEvent(n) {
     //     document.querySelector('.gameboard1').addEventListener('click', () => {
     //         if (isPlaced) {

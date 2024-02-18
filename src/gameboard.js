@@ -118,6 +118,7 @@ export default function Gameboard(h, w) {
     // Check if all ships are sunk
     const allSunk = () => ships.every((i) => i.isSunk());
 
+    const getAxis = () => horizontalAxis;
     return {
         getBoard,
         place,
@@ -126,5 +127,6 @@ export default function Gameboard(h, w) {
         allSunk,
         changeAxis,
         previewPlace,
+        getAxis,
     };
 }

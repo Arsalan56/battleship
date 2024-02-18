@@ -29,6 +29,34 @@ export default function Game() {
         }
     };
 
+    const checkValid = (y, x, len) => {
+        const otherBoard = oppBoard.getBoard();
+        let add = 1;
+        let subt = 2;
+        const horizontalAxis = oppBoard.getAxis();
+        const preview = [];
+        if (horizontalAxis) {
+            for (let i = 0; i < Math.floor(len); i++) {
+                if (x - i - 1 < 0) {
+                    preview.push(
+                        otherBoard[y - 1][parseInt(x, 10) - 1 + add++]
+                    );
+                } else {
+                    preview.push(otherBoard[y - 1][x - i - 1]);
+                }
+            }
+        } else {
+            for (let i = 0; i < Math.floor(len); i++) {
+                if (parseInt(y, 10) + i > 9) {
+                    preview.push(otherBoard[y - subt++][x - 1]);
+                } else {
+                    preview.push(otherBoard[y - 1 + i][x - 1]);
+                }
+            }
+        }
+        return preview.every((i) => i === false);
+    };
+
     const randomBoard = (size) => {
         if (size < 2) {
             return;
@@ -40,12 +68,19 @@ export default function Game() {
         // Implement new code here:
         // If position is valid, then place. Otherwise, loop until
         // a valid location is generated
+        let posY = randomInt(10) + 1;
+        let posX = randomInt(10) + 1;
 
-        oppBoard.place(
-            randomInt(10) + 1,
-            randomInt(10) + 1,
-            Ship(Math.floor(size))
-        );
+        while (!checkValid(posY, posX, size)) {
+            posY = randomInt(10) + 1;
+            posX = randomInt(10) + 1;
+        }
+        // if (!checkValid(posY, posX, size)) {
+        //     posY = randomInt(10) + 1;
+        //     posX = randomInt(10) + 1;
+        // }
+
+        oppBoard.place(posY, posX, Ship(Math.floor(size)));
         if (size === 4 || size === 3.5) {
             randomBoard(size - 0.5);
         } else {
@@ -67,8 +102,9 @@ export default function Game() {
 
         document.querySelector('.gameboard1').style.cursor = 'default';
         randomBoard(5);
-        console.log(oppBoard.getBoard());
-        // showOppBoard();
+        // console.log(oppBoard.getBoard());
+        showOppBoard();
+        console.log(document.querySelectorAll('.placed'));
         // main();
     };
 
