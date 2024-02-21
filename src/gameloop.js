@@ -7,12 +7,18 @@ export default function Game() {
     const allBoxes = document.querySelectorAll('.gameboard2 > div > div');
 
     const main = () => {
-        let gameOn = true;
-        while (gameOn) {
-            if (oppBoard.allSunk() || mainBoard.allSunk()) {
-                gameOn = false;
-            }
-        }
+        document.querySelectorAll('.gameboard2 > div > div').forEach((i) => {
+            i.addEventListener('click', () => {
+                i.classList.add('hit');
+                oppBoard.receiveAttack(
+                    i.parentNode.getAttribute('data'),
+                    i.getAttribute('data')
+                );
+                if (oppBoard.allSunk()) {
+                    console.log('Winner');
+                }
+            });
+        });
     };
 
     const randomInt = (max) => Math.floor(Math.random() * max);
@@ -102,10 +108,8 @@ export default function Game() {
 
         document.querySelector('.gameboard1').style.cursor = 'default';
         randomBoard(5);
-        // console.log(oppBoard.getBoard());
         showOppBoard();
-        console.log(document.querySelectorAll('.placed'));
-        // main();
+        main();
     };
 
     return { start };
