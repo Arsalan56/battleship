@@ -5,6 +5,25 @@ export default function Game() {
     let mainBoard;
     const oppBoard = Gameboard(10, 10);
     const allBoxes = document.querySelectorAll('.gameboard2 > div > div');
+    const userBoxes = document.querySelectorAll('.gameboard1 > div > div');
+    const validBoxes = [];
+
+    const randomInt = (max) => Math.floor(Math.random() * max);
+
+    userBoxes.forEach((i) => {
+        validBoxes.push(i);
+    });
+
+    const oppHit = () => {
+        const randInt = randomInt(validBoxes.length);
+        const chosen = validBoxes[randInt];
+        validBoxes.splice(randInt, 1);
+        mainBoard.receiveAttack(
+            chosen.parentNode.getAttribute('data'),
+            chosen.getAttribute('data')
+        );
+        chosen.classList.add('hit');
+    };
 
     const main = () => {
         document.querySelectorAll('.gameboard2 > div > div').forEach((i) => {
@@ -14,14 +33,14 @@ export default function Game() {
                     i.parentNode.getAttribute('data'),
                     i.getAttribute('data')
                 );
+
                 if (oppBoard.allSunk()) {
                     console.log('Winner');
                 }
+                oppHit();
             });
         });
     };
-
-    const randomInt = (max) => Math.floor(Math.random() * max);
 
     const showOppBoard = () => {
         const ob = oppBoard.getBoard();
