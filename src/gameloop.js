@@ -28,16 +28,18 @@ export default function Game() {
     const main = () => {
         document.querySelectorAll('.gameboard2 > div > div').forEach((i) => {
             i.addEventListener('click', () => {
-                i.classList.add('hit');
-                oppBoard.receiveAttack(
-                    i.parentNode.getAttribute('data'),
-                    i.getAttribute('data')
-                );
+                if (!i.classList.contains('hit')) {
+                    i.classList.add('hit');
+                    oppBoard.receiveAttack(
+                        i.parentNode.getAttribute('data'),
+                        i.getAttribute('data')
+                    );
 
-                if (oppBoard.allSunk()) {
-                    console.log('Winner');
+                    if (oppBoard.allSunk()) {
+                        console.log('Winner');
+                    }
+                    oppHit();
                 }
-                oppHit();
             });
         });
     };

@@ -303,3 +303,53 @@ button {
 .hit.placed {
     background: green;
 }
+
+.endScreen {
+    position: absolute;
+    border: 2px solid #1e8499;
+    border-radius: 20px;
+    height: 25vh;
+    width: 30vw;
+    padding-bottom: 20px;
+    background: #9ab7d4;
+    display: grid;
+    grid-template: min-content 1fr / 1fr;
+}
+
+.endTop {
+    background: #1e8499;
+    padding: 10px 20px 5px 20px;
+    border-radius: 18px 18px 0px 0px;
+}
+
+.endTop > p {
+    text-align: center;
+    color: white;
+    font-size: 1.4em;
+}
+
+.endScreen p,
+.endScreen button {
+    text-align: center;
+    align-self: center;
+    font-size: 1.5em;
+}
+
+.endScreen button {
+    font-size: 1.1em;
+    width: 80%;
+    background: #1e8499;
+    border: 0px;
+    border-radius: 20px;
+    height: 1.8em;
+    color: white;
+}
+
+.endMain {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
