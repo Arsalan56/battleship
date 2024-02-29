@@ -298,13 +298,13 @@ button {
 }
 
 .hit {
-    background: red;
+    background: #d00000;
 }
 
-.hit.placed {
-    background: green;
+.hit.placed,
+.hit.oppPlaced {
+    background: #70e000;
 }
-
 /* Result screen styling */
 .endScreen {
     transform: scale(0.001);
@@ -346,7 +346,7 @@ button {
     border: 0px;
     transition: transform 0.3s;
     border-radius: 20px;
-    height: 1.8em;
+    height: min-content;
     color: white;
 }
 

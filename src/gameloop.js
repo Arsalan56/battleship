@@ -61,7 +61,7 @@ export default function Game() {
             for (let j = 0; j < 10; j++) {
                 if (ob[i][j] !== false) {
                     // Add the two numbers together by string
-                    allBoxes[i * 10 + j].classList.add('placed');
+                    allBoxes[i * 10 + j].classList.add('oppPlaced');
                 }
             }
         }
