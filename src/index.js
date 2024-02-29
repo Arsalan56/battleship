@@ -4,6 +4,9 @@ import Gameboard from './gameboard';
 import Ship from './ship';
 import Game from './gameloop';
 
+import './github-mark.svg';
+import './ship-icon.png';
+
 (() => {
     const mainBoard = Gameboard(10, 10);
     const board1 = document.querySelector('.gameboard1');
