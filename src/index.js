@@ -111,5 +111,12 @@ import Game from './gameloop';
 
     addEvent(1);
 
-    // Game().start(mainBoard);
+    // Event listener for restart game button
+    document
+        .querySelector('.endMain > button')
+        .addEventListener('click', () => {
+            // Reload the page if the user wants to play again
+            // eslint-disable-next-line no-restricted-globals
+            location.reload();
+        });
 })();

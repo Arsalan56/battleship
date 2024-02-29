@@ -168,7 +168,8 @@ header > p {
     font-family: 'videophreak';
 }
 
-header > img {
+header img,
+header a {
     --sizing: 1.7em;
     height: var(--sizing);
     width: var(--sizing);
@@ -376,8 +377,14 @@ button {
     margin: 0;
     padding: 0;
     visibility: hidden;
-    background: rgba(128, 128, 128, 0.45);
+    background: rgba(0, 0, 0, 0.45);
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+header a:hover {
+    cursor: pointer;
+    transform: rotate(1turn);
+    transition: transform 0.55s;
 }

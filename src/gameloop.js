@@ -113,10 +113,6 @@ export default function Game() {
             posY = randomInt(10) + 1;
             posX = randomInt(10) + 1;
         }
-        // if (!checkValid(posY, posX, size)) {
-        //     posY = randomInt(10) + 1;
-        //     posX = randomInt(10) + 1;
-        // }
 
         oppBoard.place(posY, posX, Ship(Math.floor(size)));
         if (size === 4 || size === 3.5) {
