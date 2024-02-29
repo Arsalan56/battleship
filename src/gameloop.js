@@ -29,16 +29,27 @@ export default function Game() {
         document.querySelectorAll('.gameboard2 > div > div').forEach((i) => {
             i.addEventListener('click', () => {
                 if (!i.classList.contains('hit')) {
+                    const endScreen = document.querySelector('.cover');
                     i.classList.add('hit');
                     oppBoard.receiveAttack(
                         i.parentNode.getAttribute('data'),
                         i.getAttribute('data')
                     );
-
                     if (oppBoard.allSunk()) {
-                        console.log('Winner');
+                        endScreen.style.visibility = 'visible';
+                        document
+                            .querySelector('.endScreen')
+                            .classList.add('endAni');
                     }
                     oppHit();
+                    if (mainBoard.allSunk()) {
+                        endScreen.style.visibility = 'visible';
+                        document.querySelector('.winnerDisplay').textContent =
+                            'You Lost!';
+                        document
+                            .querySelector('.endScreen')
+                            .classList.add('endAni');
+                    }
                 }
             });
         });

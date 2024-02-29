@@ -304,7 +304,9 @@ button {
     background: green;
 }
 
+/* Result screen styling */
 .endScreen {
+    transform: scale(0.001);
     position: absolute;
     border: 2px solid #1e8499;
     border-radius: 20px;
@@ -314,6 +316,7 @@ button {
     background: #9ab7d4;
     display: grid;
     grid-template: min-content 1fr / 1fr;
+    visibility: visible;
 }
 
 .endTop {
@@ -340,9 +343,14 @@ button {
     width: 80%;
     background: #1e8499;
     border: 0px;
+    transition: transform 0.3s;
     border-radius: 20px;
     height: 1.8em;
     color: white;
+}
+
+.endScreen button:hover {
+    transform: scale(1.05);
 }
 
 .endMain {
@@ -352,4 +360,24 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.endAni {
+    transform: scale(1);
+    transition: transform 0.2s;
+}
+
+.cover {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    visibility: hidden;
+    background: rgba(128, 128, 128, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
